@@ -19,7 +19,7 @@ public class Caesar {
     }
 
     public Caesar(int key, String text) {
-        this.key = key;
+        this.key = (key > 26) ? verifyKey(): key;
         this.text = text;
     }
 
@@ -33,18 +33,18 @@ public class Caesar {
         return this.key;
     }
 
-    public String encrypt(String text) {
-        int key = verifyKey();
-
-        char result = 0;
-        String texts = null;
-        for(char i = 0; i < text.length(); i++) {
-            result = convert(i);
+    public String encrypt() {
+        char result;
+        String texts = "";
+        for(int i = 0; i < this.text.length(); i++) {
+            result = convert(this.text.charAt(i));
+            texts += result;
         }
-        texts += result;
+
         return texts;
         
     }
+
     private char convert(char word) {
         int ascii;
          if (isUpperCase(word)) {
